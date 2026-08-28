@@ -161,12 +161,15 @@ class WebReconTool:
             try:
                 with socket.create_connection((self.args.target, 443)) as sock:
                     with context.wrap_socket(sock, server_hostname=self.args.target) as ssock:
-                        ip, port, _, _ = ssock.getpeername()
+                        peer = ssock.getpeername()
                         cert = ssock.getpeercert()
+
+                        ip = peer[0]
+                        port = peer[1]
 
                         console.print("[*] Filtering results:", style="info")
                         console.print(f'[+] Domain -> {self.args.target}', style="success")
-                        console.print(f"[+] IP address (IPV6) -> {ip}", style="success")
+                        console.print(f"[+] IP address (IPV4) -> {ip}", style="success")
                         console.print(f'[+] Port -> {port}\n\n', style="success")
 
                         console.print("[*] User information:", style="info")
