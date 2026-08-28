@@ -40,7 +40,7 @@ class WebReconTool:
         self.args = args
 
     def run(self):
-        if not self.args.subdomain and not self.args.port and not self.args.headers and not self.args.headers and not self.information:
+        if not self.args.subdomain and not self.args.port and not self.args.headers and not self.args.information:
             self.dns_enumaration()
 
         if self.args.target and self.args.subdomain:
